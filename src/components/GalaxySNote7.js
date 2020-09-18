@@ -7,6 +7,7 @@ import exclamation from "../assets/exclamation.png"
 export default class GalaxySNote7 extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props)
     this.state = {
       panicked: false,
     }
@@ -19,9 +20,17 @@ export default class GalaxySNote7 extends React.Component {
   }
 
   throwAFit = () => {
+    this.setState ({
+      panicked: true
+    }, 
+    () => setTimeout( this.relax, 2000 ))
   }
 
   relax = () => {
+    this.setState ({
+      panicked: false
+    })
+    console.log("relaxed")
   }
 
   exclaim = () => {
@@ -34,7 +43,7 @@ export default class GalaxySNote7 extends React.Component {
 
   render() {
     return(
-      <div id="galaxy-s-note" onClick={this.exclaim}>
+      <div id="galaxy-s-note" onClick={this.exclaim}  >
         {(this.state.panicked) ? this.panic() : null}
       </div>
     )
